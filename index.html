@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>News App</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+    .intro-message {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        font-size: 48px;
+        color: red;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        opacity: 0;
+        animation: fade-in 1s ease-in-out forwards;
+    }
+
+    @keyframes fade-in {
+        0% {
+            opacity: 0;
+            transform: translate(-50%, -50%) scale(0.5);
+        }
+        100% {
+            opacity: 1;
+            transform: translate(-50%, -50%) scale(1);
+        }
+    }
+
+    .company-logo img {
+    width: 70px;
+    height: 80px;
+    animation: rotate 3s linear;
+    }
+
+    @keyframes rotate {
+        0% {
+            transform: rotate(0deg);
+        }
+        100% {
+            transform: rotate(360deg);
+        }
+    }
+
+    </style>
+</head>
+
+<body>
+    <div id="intro-message" class="intro-message">This website page is created by Amit jakhar</div>
+
+    <nav>
+        <div class="main-nav container flex">
+            <a href="#" onclick="reload()" class="company-logo">
+                <img src="Guzman.png" alt="company logo">
+            </a>
+            <div class="nav-links">
+                <ul class="flex">
+                    <li class="hover-link nav-item" id="finance" onclick="onNavItemClick('finance')">Finance</li>
+                    <li class="hover-link nav-item" id="politics" onclick="onNavItemClick('politics')">Politics</li>
+                    <li class="hover-link nav-item" id="technology" onclick="onNavItemClick('technology')">Technology
+                    </li>
+                    <li class="hover-link nav-item" id="ipl" onclick="onNavItemClick('ipl')">IPL</li>
+                </ul>
+            </div>
+            <div class="search-bar flex">
+                <input id="search-text" type="text" class="news-input" placeholder="e.g. Science">
+                <button id="search-button" class="search-button">Search</button>
+            </div>
+        </div>
+    </nav>
+    
+    
+    <main>
+        <div class="cards-container container flex" id="cards-container">
+    
+        </div>
+    </main>
+
+    <template id="template-news-card">
+        <div class="card">
+            <div class="card-header">
+                <img src="https://via.placeholder.com/400x200" alt="news-image" id="news-img">
+            </div>
+            <div class="card-content">
+                <h3 id="news-title">This is the Title</h3>
+                <h6 class="news-source" id="news-source">End Gadget 26/08/2023</h6>
+                <p class="news-desc" id="news-desc">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Recusandae
+                    saepe quis voluptatum quisquam vitae doloremque facilis molestias quae ratione cumque!</p>
+            </div>
+        </div>
+    </template>
+
+
+    <script src="script.js"></script>
+    <script>
+        window.addEventListener("DOMContentLoaded", () => {
+            const introMessage = document.getElementById("intro-message");
+            const mainContent = document.querySelector("main");
+            const body = document.querySelector("body");
+
+            introMessage.style.opacity = "1"; // Show the intro message initially
+            mainContent.style.display = "none"; // Hide the main content initially
+
+            setTimeout(() => {
+                introMessage.style.opacity = "0"; // Fade out the intro message
+                setTimeout(() => {
+                    introMessage.style.display = "none"; // Hide the intro message
+                    mainContent.style.display = "block"; // Show the main content
+                }, 1000);
+            }, 3000);
+        });
+    </script>
+</body>
+</html>
